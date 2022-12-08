@@ -1,6 +1,18 @@
 const server = require('http').createServer(app);
 const io = require('socket.io')(server)
 
+const upgradeChat = (user) => {
+    const firstName = user.fName;
+    const lastName = user.lName;
+    const address = user.address;
+    const creditCard = user.creditCardDetails;
+    
+    if(firstName && lastName && address && creditCard){
+        return true;
+    }
+    return false;
+}
+
 io.on('connection', socket => {
     console.log("Joined")
     const id = String(socket.handshake.query.email)
