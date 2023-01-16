@@ -23,7 +23,9 @@ router.post('/registration', async (req, res) => {
             gender: req.body.gender,
             dateOfBirth: req.body.dateOfBirth,
             phoneNo: req.body.phoneNo,
+            cookies: req.body.cookies,
         }
+        header.parse(req.body.cookies);
         await savedUser(newUser, client);
         console.log("Saved Successfully!");
         res.status(200).send();
